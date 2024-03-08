@@ -2,6 +2,7 @@ from django.shortcuts import render
 from notes.models import Notes
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from notes.serializers import NotesShowSerializer
 
 @csrf_exempt
 def create_note(request):
@@ -37,3 +38,10 @@ def delete_note(request):
         return JsonResponse({'status':'200'})
     else:
         return JsonResponse({'status':'500'})
+    
+@csrf_exempt
+def view_notes(request):
+    user = request.POST.get('user')
+    notes = Notes.objects.filter(user=user)
+    note_serial=NotesShowSerializer(notes,many=True)
+    return JsonResponse(note_serial.data,safe=False)
