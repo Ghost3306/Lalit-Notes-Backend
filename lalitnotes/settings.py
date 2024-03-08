@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user'
+    'user',
+    'notes',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -50,9 +52,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'lalitnotes.urls'
+# CORS_ALLOWED_ORIGINS = [
+#     "*",
+# ]
+
+# CSRF_TRUSTED_ORIGINS = [
+#     "*",
+# ]
 
 TEMPLATES = [
     {
